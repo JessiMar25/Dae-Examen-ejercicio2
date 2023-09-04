@@ -3,14 +3,20 @@ using System;
 
 class Program
 {
+    // Definimos la constante MaxAlumnos con el límite de alumnos.
     const int MaxAlumnos = 100;
+
+    // Arreglos para almacenar la información de los alumnos.
     string[] codigos = new string[MaxAlumnos];
     string[] nombres = new string[MaxAlumnos];
     DateTime[] fechasNacimiento = new DateTime[MaxAlumnos];
     string[] grados = new string[MaxAlumnos];
     int[] aniosRegistro = new int[MaxAlumnos];
+
+    // Variable para llevar un seguimiento de la cantidad de alumnos ingresados.
     int cantidadAlumnos = 0;
 
+    // Método principal
     static void Main(string[] args)
     {
         int opcion;
@@ -52,6 +58,7 @@ class Program
         } while (opcion != 5);
     }
 
+    // Método para agregar un alumno
     void AgregarAlumno()
     {
         if (cantidadAlumnos < MaxAlumnos)
@@ -79,16 +86,18 @@ class Program
         }
     }
 
+    // Método para mostrar el listado de alumnos
     void MostrarListadoAlumnos()
     {
         Console.WriteLine("Listado de Alumnos:");
-        Console.WriteLine("Código | Nombre | Fecha Nacimiento | Grado | Año de Registro");
+        Console.WriteLine("Código | Nombre         | Fecha Nacimiento | Grado    | Año de Registro");
         for (int i = 0; i < cantidadAlumnos; i++)
         {
-            Console.WriteLine($"{codigos[i]} | {nombres[i]} | {fechasNacimiento[i]:yyyy-MM-dd} | {grados[i]} | {aniosRegistro[i]}");
+            Console.WriteLine($"{codigos[i]}   | {nombres[i]} | {fechasNacimiento[i]:yyyy-MM-dd} | {grados[i]} | {aniosRegistro[i]}");
         }
     }
 
+    // Método para buscar un alumno por código
     void BuscarAlumnoPorCodigo()
     {
         Console.Write("Ingrese el código del alumno a buscar: ");
@@ -116,6 +125,7 @@ class Program
         }
     }
 
+    // Método para editar la información de un alumno por código
     void EditarAlumnoPorCodigo()
     {
         Console.Write("Ingrese el código del alumno a editar: ");
