@@ -3,22 +3,18 @@ using System;
 
 class Program
 {
-    static string[] codigos;
-    static string[] nombres;
-    static DateTime[] fechasNacimiento;
-    static string[] grados;
-    static int[] aniosRegistro;
-    static int cantidadAlumnos = 0;
+    const int MaxAlumnos = 100;
+    string[] codigos = new string[MaxAlumnos];
+    string[] nombres = new string[MaxAlumnos];
+    DateTime[] fechasNacimiento = new DateTime[MaxAlumnos];
+    string[] grados = new string[MaxAlumnos];
+    int[] aniosRegistro = new int[MaxAlumnos];
+    int cantidadAlumnos = 0;
 
     static void Main(string[] args)
     {
         int opcion;
-
-        codigos = new string[100];
-        nombres = new string[100];
-        fechasNacimiento = new DateTime[100];
-        grados = new string[100];
-        aniosRegistro = new int[100];
+        Program programa = new Program();
 
         do
         {
@@ -34,16 +30,16 @@ class Program
             switch (opcion)
             {
                 case 1:
-                    AgregarAlumno();
+                    programa.AgregarAlumno();
                     break;
                 case 2:
-                    MostrarListadoAlumnos();
+                    programa.MostrarListadoAlumnos();
                     break;
                 case 3:
-                    BuscarAlumnoPorCodigo();
+                    programa.BuscarAlumnoPorCodigo();
                     break;
                 case 4:
-                    EditarAlumnoPorCodigo();
+                    programa.EditarAlumnoPorCodigo();
                     break;
                 case 5:
                     Console.WriteLine("Saliendo del programa.");
@@ -56,27 +52,34 @@ class Program
         } while (opcion != 5);
     }
 
-    static void AgregarAlumno()
+    void AgregarAlumno()
     {
-        Console.Write("Código del alumno: ");
-        codigos[cantidadAlumnos] = Console.ReadLine();
+        if (cantidadAlumnos < MaxAlumnos)
+        {
+            Console.Write("Código del alumno: ");
+            codigos[cantidadAlumnos] = Console.ReadLine();
 
-        Console.Write("Nombre completo del alumno: ");
-        nombres[cantidadAlumnos] = Console.ReadLine();
+            Console.Write("Nombre completo del alumno: ");
+            nombres[cantidadAlumnos] = Console.ReadLine();
 
-        Console.Write("Fecha de nacimiento (yyyy-MM-dd): ");
-        fechasNacimiento[cantidadAlumnos] = DateTime.Parse(Console.ReadLine());
+            Console.Write("Fecha de nacimiento (yyyy-MM-dd): ");
+            fechasNacimiento[cantidadAlumnos] = DateTime.Parse(Console.ReadLine());
 
-        Console.Write("Grado del alumno: ");
-        grados[cantidadAlumnos] = Console.ReadLine();
+            Console.Write("Grado del alumno: ");
+            grados[cantidadAlumnos] = Console.ReadLine();
 
-        Console.Write("Año de registro: ");
-        aniosRegistro[cantidadAlumnos] = int.Parse(Console.ReadLine());
+            Console.Write("Año de registro: ");
+            aniosRegistro[cantidadAlumnos] = int.Parse(Console.ReadLine());
 
-        cantidadAlumnos++;
+            cantidadAlumnos++;
+        }
+        else
+        {
+            Console.WriteLine("Se ha alcanzado el límite de alumnos (100).");
+        }
     }
 
-    static void MostrarListadoAlumnos()
+    void MostrarListadoAlumnos()
     {
         Console.WriteLine("Listado de Alumnos:");
         Console.WriteLine("Código | Nombre | Fecha Nacimiento | Grado | Año de Registro");
@@ -86,7 +89,7 @@ class Program
         }
     }
 
-    static void BuscarAlumnoPorCodigo()
+    void BuscarAlumnoPorCodigo()
     {
         Console.Write("Ingrese el código del alumno a buscar: ");
         string codigoBuscado = Console.ReadLine();
@@ -113,7 +116,7 @@ class Program
         }
     }
 
-    static void EditarAlumnoPorCodigo()
+    void EditarAlumnoPorCodigo()
     {
         Console.Write("Ingrese el código del alumno a editar: ");
         string codigoBuscado = Console.ReadLine();
@@ -148,4 +151,5 @@ class Program
         }
     }
 }
+
 ```
