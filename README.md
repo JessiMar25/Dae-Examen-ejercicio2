@@ -3,7 +3,7 @@ using System;
 
 class Program
 {
-    // Definimos la constante MaxAlumnos con el límite de alumnos.
+    // Constante que define el límite de alumnos.
     const int MaxAlumnos = 100;
 
     // Arreglos para almacenar la información de los alumnos.
@@ -16,8 +16,7 @@ class Program
     // Variable para llevar un seguimiento de la cantidad de alumnos ingresados.
     int cantidadAlumnos = 0;
 
-    // Método principal
-    static void Main(string[] args)
+    public static void Main()
     {
         int opcion;
         Program programa = new Program();
@@ -36,16 +35,16 @@ class Program
             switch (opcion)
             {
                 case 1:
-                    programa.AgregarAlumno();
+                    programa.AgregarAlumno(); // Llama a la función para agregar un alumno.
                     break;
                 case 2:
-                    programa.MostrarListadoAlumnos();
+                    programa.MostrarListadoAlumnos(); // Llama a la función para mostrar el listado de alumnos.
                     break;
                 case 3:
-                    programa.BuscarAlumnoPorCodigo();
+                    programa.BuscarAlumnoPorCodigo(); // Llama a la función para buscar un alumno por código.
                     break;
                 case 4:
-                    programa.EditarAlumnoPorCodigo();
+                    programa.EditarAlumnoPorCodigo(); // Llama a la función para editar la información de un alumno por código.
                     break;
                 case 5:
                     Console.WriteLine("Saliendo del programa.");
@@ -58,7 +57,7 @@ class Program
         } while (opcion != 5);
     }
 
-    // Método para agregar un alumno
+    // Función para agregar un alumno.
     void AgregarAlumno()
     {
         if (cantidadAlumnos < MaxAlumnos)
@@ -86,24 +85,27 @@ class Program
         }
     }
 
-    // Método para mostrar el listado de alumnos
+    // Función para mostrar el listado de alumnos.
     void MostrarListadoAlumnos()
     {
         Console.WriteLine("Listado de Alumnos:");
         Console.WriteLine("Código | Nombre         | Fecha Nacimiento | Grado    | Año de Registro");
+
+        // Itera sobre los alumnos y muestra sus datos en formato de tabla.
         for (int i = 0; i < cantidadAlumnos; i++)
         {
             Console.WriteLine($"{codigos[i]}   | {nombres[i]} | {fechasNacimiento[i]:yyyy-MM-dd} | {grados[i]} | {aniosRegistro[i]}");
         }
     }
 
-    // Método para buscar un alumno por código
+    // Función para buscar un alumno por código.
     void BuscarAlumnoPorCodigo()
     {
         Console.Write("Ingrese el código del alumno a buscar: ");
         string codigoBuscado = Console.ReadLine();
         bool encontrado = false;
 
+        // Busca un alumno por código y muestra sus datos si se encuentra.
         for (int i = 0; i < cantidadAlumnos; i++)
         {
             if (codigos[i] == codigoBuscado)
@@ -125,13 +127,14 @@ class Program
         }
     }
 
-    // Método para editar la información de un alumno por código
+    // Función para editar la información de un alumno por código.
     void EditarAlumnoPorCodigo()
     {
         Console.Write("Ingrese el código del alumno a editar: ");
         string codigoBuscado = Console.ReadLine();
         bool encontrado = false;
 
+        // Busca un alumno por código y permite editar su información si se encuentra.
         for (int i = 0; i < cantidadAlumnos; i++)
         {
             if (codigos[i] == codigoBuscado)
